@@ -11,16 +11,21 @@
 
 <body>
     {% block content %}
+    <div id="js-alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong style="margin-right: 4px;">ShopNow!</strong> Welcome to shopnow. Browse through your favorite products.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <div class="container col-md-4 mt-3">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search a Product..." aria-label="Recipient's username"
-                aria-describedby="button-addon2">
-            <button id="js-search-product" class="btn btn-outline-secondary" type="button" id="button-addon2" data-bs-toggle="tooltip" data-bs-placement="top" title="search">
-                <i class="bi bi-search"></i>
-            </button>
+        <div class="input-group">
+            <form method="GET" action="{% url 'get_searched_product' %}" class="input-group">
+                <input type="text" name="query" class="form-control" placeholder="Search a Product..." aria-label="Search">
+                <button type="submit" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="search">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
         </div>
     </div>
-    <div class="container mt-5">
+    <div class="container mt-3">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {% for product in products %}
             <div class="col">

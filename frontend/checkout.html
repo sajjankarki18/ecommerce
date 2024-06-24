@@ -30,19 +30,19 @@
                             <p>Shipping Information:</p>
                             <hr>
                             <div class="form-field">
-                                <input class="form-control" type="text" name="address" placeholder="Address..">
+                                <input required class="form-control" type="text" name="address" placeholder="Address..">
                             </div>
                             <div class="form-field">
-                                <input class="form-control" type="text" name="city" placeholder="City..">
+                                <input required class="form-control" type="text" name="city" placeholder="City..">
                             </div>
                             <div class="form-field">
-                                <input class="form-control" type="text" name="state" placeholder="State..">
+                                <input required class="form-control" type="text" name="state" placeholder="State..">
                             </div>
                             <div class="form-field">
-                                <input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+                                <input required class="form-control" type="text" name="zipcode" placeholder="Zip code..">
                             </div>
                             <div class="form-field">
-                                <input class="form-control" type="text" name="country" placeholder="Zip code..">
+                                <input required class="form-control" type="text" name="country" placeholder="Zip code..">
                             </div>
                         </div>
 
@@ -67,7 +67,11 @@
                     <hr>
                     {% for item in items %}
                     <div class="cart-row">
+                        {% if not item.product.imageURL%}
+                        <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}" alt="Image not available"></div>
+                        {% else %}
                         <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+                        {% endif %}
                         <div style="flex:2">
                             <p>{{item.product.name}}</p>
                         </div>
@@ -113,6 +117,7 @@
 
         document.getElementById('make-payment').addEventListener('click', () => {
             submitFormData()
+            
         })
 
         const submitFormData = () => {
